@@ -82,6 +82,10 @@ Return two values:
   "Ping the Forest server."
   (values (post-json (dict "type" "ping"))))
 
+(defun version ()
+  "Query the version of the remote Forest software."
+  (values (post-json (dict "type" "version"))))
+
 ;;; Helper function write write small snippets of raw Quil.
 (defun quil (&rest instructions)
   "A helper function to make Quil program strings."

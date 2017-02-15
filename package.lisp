@@ -21,6 +21,7 @@
    #:quil                               ; FUNCTION
 
    #:ping                               ; FUNCTION
+   #:version                            ; FUNCTION
    #:run                                ; FUNCTION
    #:wavefunction                       ; FUNCTION
    )
