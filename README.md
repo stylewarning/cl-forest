@@ -21,7 +21,7 @@ CL-FOREST> (run (quil "H 0"
 ((0 0) (1 1) (1 1) (1 1) (1 1) (0 0) (0 0) (1 1) (0 0) (0 0))
 ```
 
-Next, we show that a Bell pair is exactly the state `(|00> + |11>)/sqrt(2))` by looking directly at the wavefunction.
+Next, we show that a Bell pair is exactly the state `(|00> + |11>)/sqrt(2)` by looking directly at the wavefunction.
 
 ```lisp
 CL-FOREST> (wavefunction (quil "H 0"
