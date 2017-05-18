@@ -93,14 +93,14 @@ Return two values:
     (loop :for instr :in instructions
           :do (write-line instr s))))
 
-;; take lists of quil instructions and turn them into strings
-(defmacro quill (&rest body)
-  `(quil
-    ,@(mapcar
-       (lambda (e)
-         (format nil "~{~a~^ ~}"
-                 (mapcar #'write-to-string e)))
-       body)))
+(defmacro quill (&rest instructions)
+  "A helper function to make Quil program from LoL"
+  (with-output-to-string (s)
+    (loop :for instr :in instructions
+          :do (write-line
+               (format nil "~{~a~^ ~}"
+                       (mapcar #'write-to-string instr))
+               s))))
 
 ;;; Corresponds to https://github.com/rigetticomputing/pyquil/blob/master/pyquil/forest.py#L391
 (defun run (program addresses &optional (num-trials 1))
