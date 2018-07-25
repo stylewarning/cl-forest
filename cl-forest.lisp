@@ -29,11 +29,15 @@
 (defparameter *endpoint* "https://api.rigetti.com/qvm")
 
 (defvar *api-key* nil)
+(defvar *user-id* nil)
 
-(defun check-api-key ()
-  (unless (stringp *api-key*)
-    (error "API key is not set. Set the variable CL-FOREST:*API-KEY* to ~
-            a string containing your key.")))
+(defun check-credentials ()
+  (progn (unless (stringp *api-key*)
+	   (error "API key is not set. Set the variable CL-FOREST:*API-KEY* to ~
+            a string containing your key."))
+	 (unless (stringp *user-id*)
+	   (error "User id is not set. Set the variable CL-FOREST:*USER-ID* to ~
+            a string containing your id."))))
 
 
 ;;; Helper function for JSON dictionaries.
@@ -51,7 +55,7 @@ Return two values:
 
     2. The content length or NIL.
 "
-  (check-api-key)
+  (check-credentials)
 
   (multiple-value-bind (body status headers)
       (drakma:http-request
@@ -61,7 +65,8 @@ Return two values:
        ;;
        ;;    https://github.com/rigetticomputing/pyquil/blob/master/pyquil/forest.py#L234
        :accept "application/octet-stream"
-       :additional-headers `(("X-API-KEY" . ,*api-key*))
+       :additional-headers `(("X-API-KEY" . ,*api-key*)
+			     ("X-USER-ID" . ,*user-id*))
        :content (with-output-to-string (s)
                   (yason:encode json s)))
 
