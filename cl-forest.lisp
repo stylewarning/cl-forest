@@ -32,12 +32,12 @@
 (defvar *user-id* nil)
 
 (defun check-credentials ()
-  (progn (unless (stringp *api-key*)
-	   (error "API key is not set. Set the variable CL-FOREST:*API-KEY* to ~
+  (unless (stringp *api-key*)
+    (error "API key is not set. Set the variable CL-FOREST:*API-KEY* to ~
             a string containing your key."))
-	 (unless (stringp *user-id*)
-	   (error "User id is not set. Set the variable CL-FOREST:*USER-ID* to ~
-            a string containing your id."))))
+  (unless (stringp *user-id*)
+    (error "User id is not set. Set the variable CL-FOREST:*USER-ID* to ~
+            a string containing your id.")))
 
 
 ;;; Helper function for JSON dictionaries.
@@ -66,7 +66,7 @@ Return two values:
        ;;    https://github.com/rigetticomputing/pyquil/blob/master/pyquil/forest.py#L234
        :accept "application/octet-stream"
        :additional-headers `(("X-API-KEY" . ,*api-key*)
-			     ("X-USER-ID" . ,*user-id*))
+                             ("X-USER-ID" . ,*user-id*))
        :content (with-output-to-string (s)
                   (yason:encode json s)))
 
