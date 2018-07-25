@@ -43,10 +43,11 @@ We see immediately that `|00>` and `|11>` both have a 50% chance of being observ
 
 ## API Key
 
-Before starting, you'll need to set your API key by setting the variable `cl-forest:*api-key*`.
+Before starting, you'll need to set your API key and User id by setting the variable `cl-forest:*api-key*` and `cl-forest:*user-id*` .
 
 ```lisp
 (setf cl-forest:*api-key* "<< YOUR API KEY >>")
+(setf cl-forest:*user-id* "<< YOUR USER ID >>")
 ```
 
 You can check that it works by pinging the server:

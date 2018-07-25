@@ -18,6 +18,7 @@
   (:use #:cl)
   (:export
    #:*api-key*                          ; VARIABLE
+   #:*user-id*                          ; VARIABLE
    #:quil                               ; FUNCTION
 
    #:ping                               ; FUNCTION
